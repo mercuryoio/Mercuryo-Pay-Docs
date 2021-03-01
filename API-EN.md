@@ -10,8 +10,8 @@
 
 **Table of contents**
 
-1.  [Getting started with the system](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#1-getting-started-with-the-system)
-2. [Request parameters](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#2-request-parameters)
+1.  [Getting started with the system](/API-EN.md#1-getting-started-with-the-system)
+2. [Request parameters](/API-EN.md#2-request-parameters)
 3. [Basic parameters](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#3-basic-parameters)
 	
 	3.1. [Additional parameters (optional parameters)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#31-additional-parameters-optional-parameters)
@@ -27,7 +27,7 @@
 9. [Request for discarding/unholding funds](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#9-request-for-discardingunholding-funds)
 10. [Request for withdrawal of held funds(funds put on hold)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
 11. [Recurring payments (regular, recurring)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#11-recurring-payments-regular-recurring)
-12. [Test cards](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#12-test-cards)
+12. [Test cards](/API-EN.md#12-test-cards)
 
 [FAQ](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#faq)
 
