@@ -12,24 +12,24 @@
 
 1.  [Getting started with the system](/API-EN.md#1-getting-started-with-the-system)
 2. [Request parameters](/API-EN.md#2-request-parameters)
-3. [Basic parameters](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#3-basic-parameters)
+3. [Basic parameters](/API-EN.md#3-basic-parameters)
 	
-	3.1. [Additional parameters (optional parameters)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#31-additional-parameters-optional-parameters)
+	3.1. [Additional parameters (optional parameters)](/API-EN.md#31-additional-parameters-optional-parameters)
 	
-	3.2. [Rules for creating a signature (the sign parameter)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#32-rules-for-creating-a-signature-the-sign-parameter)
-4. [Passing a feedback message between the payment gateway and the Partner's website](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
+	3.2. [Rules for creating a signature (the sign parameter)](/API-EN.md#32-rules-for-creating-a-signature-the-sign-parameter)
+4. [Passing a feedback message between the payment gateway and the Partner's website](/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
 	
-	4.1. [Description of the parameters of the feedback document](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
-5. [Request information on transactions (detailed information on selected orders or transactions)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
-6. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
-7. [Requesting a report on transactions for a period of time](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#7-requesting-a-report-on-transactions-for-a-period-of-time)
-8. [Refund request](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#8-refund-request)
-9. [Request for discarding/unholding funds](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#9-request-for-discardingunholding-funds)
-10. [Request for withdrawal of held funds(funds put on hold)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
-11. [Recurring payments (regular, recurring)](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#11-recurring-payments-regular-recurring)
+	4.1. [Description of the parameters of the feedback document](/API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
+5. [Request information on transactions (detailed information on selected orders or transactions)](/API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
+6. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
+7. [Requesting a report on transactions for a period of time](/API-EN.md#7-requesting-a-report-on-transactions-for-a-period-of-time)
+8. [Refund request](/API-EN.md#8-refund-request)
+9. [Request for discarding/unholding funds](/API-EN.md#9-request-for-discardingunholding-funds)
+10. [Request for withdrawal of held funds(funds put on hold)](/API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
+11. [Recurring payments (regular, recurring)](/API-EN.md#11-recurring-payments-regular-recurring)
 12. [Test cards](/API-EN.md#12-test-cards)
 
-[FAQ](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#faq)
+[FAQ](/API-EN.md#faq)
 
 
 ### 1. Getting started with the system
