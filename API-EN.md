@@ -748,11 +748,11 @@ This operation is possible for transactions in **status 1 (authorize(lock amount
 
 **Recurring payments** are payments that do not require re-entering the card details. The first payment is made with the input of all card details, subsequent payments are made without entering the card details and without the participation of the card holder. By default, this functionality is disabled for the seller.
 
-When making a payment, the merchant can pass a **special parameter (params.pay_token_flag)**, which means that this payment is the first payment in the queue of recurring payments. If the payment is made successfully, the seller will receive a token in the feedback message [paragraph 4](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website) to generate subsequent recurring payments.
+When making a payment, the merchant can pass a **special parameter (params.pay_token_flag)**, which means that this payment is the first payment in the queue of recurring payments. If the payment is made successfully, the seller will receive a token in the feedback message [paragraph 4](/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website) to generate subsequent recurring payments.
 
 All subsequent (recurring) requests are sent to the URL https://pay.mercuryo.io/pay/recurrent. 
 
-The request parameters are similar to the description in [paragraph 3](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#3-basic-parameters), taking into account the need to transfer the recurring payment token "pay_token".
+The request parameters are similar to the description in [paragraph 3](/API-EN.md#3-basic-parameters), taking into account the need to transfer the recurring payment token "pay_token".
 
 Testing of recurring payments can be carried out with the card without 3Ds
 
@@ -776,18 +776,18 @@ CVV for failure payment: 222
 1. "iFrame".
 
 For the payment the customer is being redirected to pay.mercuryo servers (either directly or within an iframe), where he inserts all the card data and the whole payment is being processed there. Merchant's server only receives a callback of a successful/failed transaction afterwards.
-For that way merchant may customize the payment form design in the admin panel. Refer to [Paragraph 2 and 3](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#2-request-parameters)
+For that way merchant may customize the payment form design in the admin panel. Refer to [Paragraph 2 and 3](/API-EN.md#2-request-parameters)
 *This way is viable for non-PCIDSS merchants.*
 
 2. Host-to-host.
 
 The customer remains on merchant's server at all times. The payment form is designed by merchant. Merchant's server only submits to pay.mercurio the raw transaction data. The whole payment flow is being executed on merchant's end.
-For that way merchant is free to design the payment form. The form in the admin panel has nothing to do with this way of integration (therefore there's no way to download it via a js file, because it was not designed for that purpose). Refer to [Paragraph 6](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
+For that way merchant is free to design the payment form. The form in the admin panel has nothing to do with this way of integration (therefore there's no way to download it via a js file, because it was not designed for that purpose). Refer to [Paragraph 6](/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
 *This way is viable only for PCIDSS-compliant merchants.*
 
 #### Payment form customization
 
-In case of an ["iFrame"](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#ways-of-integration) integration there are two ways of approaching the look of payment form:
+In case of an 'iFrame' integration there are two ways of approaching the look of payment form:
 
 1. Supply the admin-panel-generated webform with a CSS file of the merchant, which may slightly alter colours, elements positioning etc. Once the CSS file is ready, pay.mercuryo can bind it to merchant's form via mercuryo's backend admin panel. *This is a preferable variant.*
 
