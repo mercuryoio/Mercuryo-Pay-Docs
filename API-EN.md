@@ -770,6 +770,11 @@ CVV for successful payment with redirect to 3DS (password is not entered): 333
 
 CVV for failure payment: 222
 
+### 13. Pay token for Customer Initiated Transactions
+
+This feature allows to generate pay token after the first transaction in order the customer doesn't need to fill in all card details for subsequent transactions with the same card (except for CVV/CVC code). For subsequent transactions a simple payment form will be showed that contains masked pan number and a field for CVV/CVC code.
+For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request.
+
 ### FAQ
 
 #### Ways of integration
