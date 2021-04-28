@@ -28,6 +28,7 @@
 10. [Request for withdrawal of held funds(funds put on hold)](/API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
 11. [Recurring payments (regular, recurring)](/API-EN.md#11-recurring-payments-regular-recurring)
 12. [Test cards](/API-EN.md#12-test-cards)
+13. [Customer initiated transactions](/API-EN.md#13-pay-token-for-customer-initiated-transactions)
 
 [FAQ](/API-EN.md#faq)
 
@@ -772,8 +773,11 @@ CVV for failure payment: 222
 
 ### 13. Pay token for Customer Initiated Transactions
 
-This feature allows to generate pay token after the first transaction in order the customer doesn't need to fill in all card details for subsequent transactions with the same card (except for CVV/CVC code). For subsequent transactions a simple payment form will be showed that contains masked pan number and a field for CVV/CVC code.
-For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request.
+This feature allows to generate pay token after the first transaction in order the customer doesn't need to fill in all card details for subsequent transactions with the same card (except for CVV/CVC code). 
+
+For subsequent transactions a simple payment form will be showed that contains masked pan number and a field for CVV/CVC code.
+
+For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](/API-EN.md#3-basic-parameters)
 
 ### FAQ
 
