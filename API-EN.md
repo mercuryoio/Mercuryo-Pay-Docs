@@ -777,7 +777,7 @@ This feature allows to generate pay token after the first transaction in order t
 
 For subsequent transactions a simple payment form will be showed that contains masked pan number and a field for CVV/CVC code.
 
-For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](/API-EN.md#3-basic-parameters)
+For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](API-EN.md#31-additional-parameters-optional-parameters)
 
 ### FAQ
 
