@@ -777,6 +777,8 @@ This feature allows to generate pay token after the first transaction in order t
 
 For subsequent transactions a simple payment form will be showed that contains masked pan number and a field for CVV/CVC code.
 
+For the first payment, the merchant can pass a special parameter (params.pay_token_flag) in request to the end-point https://pay.mercuryo.io/pay/, which means that this payment is the first one. In response the pay token will be sent back.
+
 For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](API-EN.md#31-additional-parameters-optional-parameters)
 
 ### FAQ
