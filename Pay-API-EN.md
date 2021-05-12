@@ -10,27 +10,27 @@
 
 **Table of contents**
 
-1.  [Getting started with the system](/API-EN.md#1-getting-started-with-the-system)
-2. [Request parameters](/API-EN.md#2-request-parameters)
-3. [Basic parameters](/API-EN.md#3-basic-parameters)
+1.  [Getting started with the system](/Pay-API-EN.md#1-getting-started-with-the-system)
+2. [Request parameters](/Pay-API-EN.md#2-request-parameters)
+3. [Basic parameters](/Pay-API-EN.md#3-basic-parameters)
 	
-	3.1. [Additional parameters (optional parameters)](/API-EN.md#31-additional-parameters-optional-parameters)
+	3.1. [Additional parameters (optional parameters)](/Pay-API-EN.md#31-additional-parameters-optional-parameters)
 	
-	3.2. [Rules for creating a signature (the sign parameter)](/API-EN.md#32-rules-for-creating-a-signature-the-sign-parameter)
-4. [Passing a feedback message between the payment gateway and the Partner's website](/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
+	3.2. [Rules for creating a signature (the sign parameter)](/Pay-API-EN.md#32-rules-for-creating-a-signature-the-sign-parameter)
+4. [Passing a feedback message between the payment gateway and the Partner's website](/Pay-API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
 	
-	4.1. [Description of the parameters of the feedback document](/API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
-5. [Request information on transactions (detailed information on selected orders or transactions)](/API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
-6. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
-7. [Requesting a report on transactions for a period of time](/API-EN.md#7-requesting-a-report-on-transactions-for-a-period-of-time)
-8. [Refund request](/API-EN.md#8-refund-request)
-9. [Request for discarding/unholding funds](/API-EN.md#9-request-for-discardingunholding-funds)
-10. [Request for withdrawal of held funds(funds put on hold)](/API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
-11. [Recurring payments (regular, recurring)](/API-EN.md#11-recurring-payments-regular-recurring)
-12. [Test cards](/API-EN.md#12-test-cards)
-13. [Customer initiated transactions](/API-EN.md#13-pay-token-for-customer-initiated-transactions)
+	4.1. [Description of the parameters of the feedback document](/Pay-API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
+5. [Request information on transactions (detailed information on selected orders or transactions)](/Pay-API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
+6. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/Pay-API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
+7. [Requesting a report on transactions for a period of time](/Pay-API-EN.md#7-requesting-a-report-on-transactions-for-a-period-of-time)
+8. [Refund request](/Pay-API-EN.md#8-refund-request)
+9. [Request for discarding/unholding funds](/Pay-API-EN.md#9-request-for-discardingunholding-funds)
+10. [Request for withdrawal of held funds(funds put on hold)](/Pay-API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
+11. [Recurring payments (regular, recurring)](/Pay-API-EN.md#11-recurring-payments-regular-recurring)
+12. [Test cards](/Pay-API-EN.md#12-test-cards)
+13. [Customer initiated transactions](/Pay-API-EN.md#13-pay-token-for-customer-initiated-transactions)
 
-[FAQ](/API-EN.md#faq)
+[FAQ](/Pay-API-EN.md#faq)
 
 
 ### 1. Getting started with the system
@@ -393,7 +393,7 @@ Request for a URL https://pay.mercuryo.io/pay/get_orders_data (POST) two paramet
 
 ***
 
-As a result of decoding the data parameter, we get an array of elements with a structure similar to the feedback message between the payment gateway and the Partner's website [paragraph 4](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#2-request-parameters):
+As a result of decoding the data parameter, we get an array of elements with a structure similar to the feedback message between the payment gateway and the Partner's website [paragraph 4](/Pay-API-EN.md#2-request-parameters):
 
 `stdClass Object ( [items] => Array ( [0] => stdClass Object ( [transaction_id] => 2 [reference] => 5306658 [api_key] => 16946ea0-7bfc-0132-b820-1cb65445527e [amount] => 576.25 [currency] => EUR [status] => 3 [status_name] => success [system_amount] => 637.24 [system_currency] => EUR [commission] => 60.99 [payment_system_id] => 1 [payment_system_name] => Default Payment System [card_number] => 401200******8884 [processing_error_msg] => ) ) )`
 
@@ -405,7 +405,7 @@ Request for URL https://pay.mercuryo.io/pay/direct (POST) is passed two paramete
 - data - the MIME base64 encoded string of the JSON document;
 - sign - a signature that is generated from the data string using the hash_hmac function to confirm the validity of the data.
 
-To form a request, parameters described in [paragraph 3](https://github.com/IgorKurochkin/Mercuryo-API/blob/main/API-EN.md#3-basic-parameters) are used as well as cardholder data.
+To form a request, parameters described in [paragraph 3](/Pay-API-EN.md#3-basic-parameters) are used as well as cardholder data.
 
 | Parameter name  | Type  | Maximum length  | Description | Example  |
 | ------------- | -------------  | :-------------: | -------------  | ------------  |
@@ -749,11 +749,11 @@ This operation is possible for transactions in **status 1 (authorize(lock amount
 
 **Recurring payments** are payments that do not require re-entering the card details. The first payment is made with the input of all card details, subsequent payments are made without entering the card details and without the participation of the card holder. By default, this functionality is disabled for the seller.
 
-When making a payment, the merchant can pass a **special parameter (params.pay_token_flag)**, which means that this payment is the first payment in the queue of recurring payments. If the payment is made successfully, the seller will receive a token in the feedback message [paragraph 4](/API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website) to generate subsequent recurring payments.
+When making a payment, the merchant can pass a **special parameter (params.pay_token_flag)**, which means that this payment is the first payment in the queue of recurring payments. If the payment is made successfully, the seller will receive a token in the feedback message [paragraph 4](/Pay-API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website) to generate subsequent recurring payments.
 
 All subsequent (recurring) requests are sent to the URL https://pay.mercuryo.io/pay/recurrent. 
 
-The request parameters are similar to the description in [paragraph 3](/API-EN.md#3-basic-parameters), taking into account the need to transfer the recurring payment token "pay_token".
+The request parameters are similar to the description in [paragraph 3](/Pay-API-EN.md#3-basic-parameters), taking into account the need to transfer the recurring payment token "pay_token".
 
 Testing of recurring payments can be carried out with the card without 3Ds
 
@@ -779,7 +779,7 @@ For subsequent transactions a simple payment form will be showed that contains m
 
 For the first payment, the merchant can pass a special parameter (params.pay_token_flag) in request to the end-point https://pay.mercuryo.io/pay/, which means that this payment is the first one. In response the pay token will be sent back.
 
-For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](API-EN.md#31-additional-parameters-optional-parameters)
+For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](Pay-API-EN.md#31-additional-parameters-optional-parameters)
 
 ### FAQ
 
@@ -787,13 +787,13 @@ For subsequent transactions you should additionally add *pay_token* and *params.
 1. "iFrame".
 
 For the payment the customer is being redirected to pay.mercuryo servers (either directly or within an iframe), where he inserts all the card data and the whole payment is being processed there. Merchant's server only receives a callback of a successful/failed transaction afterwards.
-For that way merchant may customize the payment form design in the admin panel. Refer to [Paragraph 2 and 3](/API-EN.md#2-request-parameters)
+For that way merchant may customize the payment form design in the admin panel. Refer to [Paragraph 2 and 3](/Pay-API-EN.md#2-request-parameters)
 *This way is viable for non-PCIDSS merchants.*
 
 2. Host-to-host.
 
 The customer remains on merchant's server at all times. The payment form is designed by merchant. Merchant's server only submits to pay.mercurio the raw transaction data. The whole payment flow is being executed on merchant's end.
-For that way merchant is free to design the payment form. The form in the admin panel has nothing to do with this way of integration (therefore there's no way to download it via a js file, because it was not designed for that purpose). Refer to [Paragraph 6](/API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
+For that way merchant is free to design the payment form. The form in the admin panel has nothing to do with this way of integration (therefore there's no way to download it via a js file, because it was not designed for that purpose). Refer to [Paragraph 6](/Pay-API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
 *This way is viable only for PCIDSS-compliant merchants.*
 
 #### Payment form customization
