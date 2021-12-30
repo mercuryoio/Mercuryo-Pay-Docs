@@ -154,7 +154,7 @@ sign:
 | params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  |
 | params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  |
 | params.verification_flag  | Integer   | 1  | Payment card verification sign. (Depends on the acquirer) 1 - After successful card verification, funds are automatically unblocked. |0 or 1. (default 0) |
-| params.random_amount_flag  | Integer   | 1  | NOT OPERATIONAL Sign of blocking a random amount for card verification. 1 - A random amount is blocked in the range from 0 to the value specified by the amount parameter   |  |
+| params.random_amount_flag  | Integer   | 1  | NOT OPERATIONAL. Sign of blocking a random amount for card verification. 1 - A random amount is blocked in the range from 0 to the value specified by the amount parameter   |  |
 | params.pay_token_flag | Integer   | 1 | Sign of receiving a token for making recurring payments. Detailed description of item 10   | 0 or 1. (default 0) |
 
 ***
