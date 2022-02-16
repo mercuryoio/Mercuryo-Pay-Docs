@@ -116,7 +116,7 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
 | failure_url | String   | 255  | URL to which the user will be redirected in case of unsuccessful payment  | `http://test.net/failure` |
 | lang  | String   | 2  | Language for displaying information on the payment page.   | ru,en,uk (ru — по умолчанию)|
 | params.user_email  | String   | -  | User e-mail    | `test@yandex.ru` |
-
+| params.user_phone  | String   | -  | User phone number    | `79034211332` |
 ***
 
 ***Example of source JSON data for generating the data parameter:***
