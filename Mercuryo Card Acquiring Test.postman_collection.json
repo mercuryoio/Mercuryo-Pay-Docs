@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "e2e7024c-f041-4b74-9a11-94bb6cb1ba2c",
+		"name": "Mercuryo Card Acquiring Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pay",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    \"expiration\":\"2022-09-05 00:00\",\r",
+							"    \"amount\":347.75,\r",
+							"    \"currency\":\"EUR\",\r",
+							"    \"description\":\"st5uu6us6tst4\",\r",
+							"    \"reference\":\"123aA\",\r",
+							"    \"success_url\":\"http:\\/\\/test.ru\\/success\",\r",
+							"    \"failure_url\":\"http:\\/\\/test.ru\\/failure\",\r",
+							"    \"lang\":\"ru\",\r",
+							"    \"params\":{\r",
+							"\t\"flag_get_url\":1,\r",
+							"    \"pay_token_flag\":1,\r",
+							"\t\"user_id\":\"test_user\",\r",
+							"\t\"user_email\":\"test@yandex.ru\"}\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay with Attached Card",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    //\"pay_token\":\"bee3d07327a21d8e7f02e10ba4b35c1560f385faff65293507002b647d008a31f388a9bff79ac966424839a28d72\",\r",
+							"    \"expiration\":\"2022-09-05 00:00\",\r",
+							"    \"amount\":347.75,\r",
+							"    \"currency\":\"EUR\",\r",
+							"    \"description\":\"TestingTest\",\r",
+							"    \"reference\":\"123aA\",\r",
+							"    \"success_url\":\"http:\\/\\/test.ru\\/success\",\r",
+							"    \"failure_url\":\"http:\\/\\/test.ru\\/failure\",\r",
+							"    \"lang\":\"ru\",\r",
+							"    \"params\":{\r",
+							"\t\"flag_get_url\":1,\r",
+							"    \"pay_token_flag\":1,\r",
+							"\t\"user_id\":\"test_user\",\r",
+							"\t\"user_email\":\"test@yandex.ru\"}\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay/get_orders_data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    //\"reference\":\"123aA\",\r",
+							"    \"transaction_id\":\"5643\"\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay/get_orders_data",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay",
+						"get_orders_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay/refund",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    \"transaction_id\":\"5643\",\r",
+							"    \"amount\":100.80\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay/refund",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay",
+						"refund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay/void",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    \"transaction_id\":\"5643\"\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay/void",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay",
+						"void"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay/complete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var Secret_key = 'Yours_Secret_key'\r",
+							"var my_body = {\r",
+							"    \"api_key\":\"Yours_api_key\",\r",
+							"    \"transaction_id\":\"5643\"\r",
+							"}\r",
+							"\r",
+							"\r",
+							"//Encrypt\r",
+							"my_body = JSON.stringify(my_body);\r",
+							"my_body = CryptoJS.enc.Utf8.parse(my_body);\r",
+							"var json = CryptoJS.enc.Base64.stringify(my_body);\r",
+							"var hash = CryptoJS.HmacMD5(json, Secret_key).toString();\r",
+							"\r",
+							"//Set variables\r",
+							"pm.variables.set('JJSON', json);\r",
+							"pm.variables.set('SSIGN', hash);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"//Decrypt\r",
+							"var my_string = jsonData.data\r",
+							"var dewords = CryptoJS.enc.Base64.parse(my_string);\r",
+							"var destr = CryptoJS.enc.Utf8.stringify(dewords);\r",
+							"console.log(destr)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{{JJSON}}",
+							"type": "default"
+						},
+						{
+							"key": "sign",
+							"value": "{{SSIGN}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pay.mrcr.io/pay/complete",
+					"protocol": "https",
+					"host": [
+						"pay",
+						"mrcr",
+						"io"
+					],
+					"path": [
+						"pay",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
