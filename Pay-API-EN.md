@@ -150,7 +150,7 @@ sign:
 
 | Parameter name  | Type  | Maximum length  | Description | Example  |
 | ------------- | -------------  | :-------------: | -------------  | ------------  |
-| pay_token  | String   | 255  | Token for generating recurring payments. The parameter is optional and depends on the settings of the payment gateway   |    |
+| pay_token  | String   | 255  | Token for generating recurring payments. The parameter is optional and depends on the settings of the payment gateway. Once received can be used with all merchant shops.   |    |
 | params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  |
 | params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  |
 | params.verification_flag  | Integer   | 1  | Payment card verification sign. (Depends on the acquirer) 1 - After successful card verification, funds are automatically unblocked. |0 or 1. (default 0) |
@@ -295,6 +295,7 @@ The data is transmitted by an HTTP POST request to the Partner's website, where:
 | pan4  | Last 4 digits of the card number   |
 | cardholder_name  | Cardholder's name (Availability depends on the type of connection and acquirer)   |
 | processing_error_msg  | Payment error (in case of processing status - 99).   |
+| external_error_id  | List of possible external_error_id`s [available here](https://github.com/mercuryoio/Mercuryo-Pay-Docs/blob/master/external_error_id%20list.xlsx "external_error_id list.xlsx")  |
 | authorization_code  | Payment system authorization code. The parameter is optional   |
 | pay_token  | Token for generating recurring payments. The parameter is optional and depends on the settings of the payment gateway   |
         
