@@ -413,7 +413,7 @@ To form a request, parameters described in [paragraph 3](/Pay-API-EN.md#3-basic-
 | card_data.pan  | String   | 16  | Payment card number  | 4111111111111111   |
 | card_data.cvv  | Integer   | 3  | CVV-code   | 123 |
 | card_data.exp_month  | Integer   | 2  | Card expiration month (1-12)   | 12   |
-| card_data.exp_year  | Integer   | 4  | Card expiration year   | 2018  |
+| card_data.exp_year  | Integer   | 4  | Card expiration year   | 2025  |
 | card_data.cardholder  | String   | 255  | Cardholder name  | Ivan Petrov   |
 
 ***
