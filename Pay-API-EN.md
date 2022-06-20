@@ -762,7 +762,7 @@ Testing of recurring payments can be carried out with the card without 3Ds
 
 Card number: 4111111111111111 **OR** 5555555555555599
 
-Expiry date: 12/19
+Expiry date: 12/25
 
 Cardholder: Ivan Petrov
 
