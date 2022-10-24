@@ -431,6 +431,11 @@ To form a request, parameters described in [paragraph 3](/Pay-API-EN.md#3-basic-
 	    "success_url":"http:\/\/test.ru\/success",
 	    "failure_url":"http:\/\/test.ru\/failure",
 	    "lang":"ru",
+	    "params":{
+	    	"flag_get_url":1,
+	    	"user_id":"test_user",
+	    	"user_email":"test@yandex.ru",
+	    	"ip":"192.168.1.1"},
 	    "card_data":{
 		"pan":"4111111111111111",
 		"cvv":123,
