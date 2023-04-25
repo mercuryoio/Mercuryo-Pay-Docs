@@ -103,20 +103,20 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
   ### 3. Basic parameters
 
 
-| Parameter name  | Type  | Maximum length  | Description | Example  |
+| Parameter name  | Type  | Maximum length  | Description | Example  | Mandatory  |
 | ------------- | -------------  | :-------------: | -------------  | ------------  |
 | api_key  | String   | 255  | Store key (identifier)   | c84f1ac0-e4f0-0131-5298-70921c57c2a2   |
-| expiration| String  | -  | Maximum time for order payment   | 2014-07-21 12:44  |
-| amount  | Integer   | 10,2  | Price to be paid Format: a positive number with "." as the separator, no more than two digits after the dot | 123.45  |
-| currency  | String   | 3  | Currency in which the product price is indicated. (3-digit alphabetic ISO 4217 currency code) |UAH, RUR, EUR, USD  |
-| reference  | String   | 255  | Unique order number in the store system for further order identification   | 7EZUWB |
-| group_reference (параметр необязательный) | String   | 255 | Site name, group identifier   | `Group.site.com` |
-| description | String  | 255  | Order description   | Оплата авиа билетов |
-| success_url  | String   | 255  | URL that the user will be redirected to if the payment is successful  | `http://test.net/success`  |
-| failure_url | String   | 255  | URL to which the user will be redirected in case of unsuccessful payment  | `http://test.net/failure` |
-| lang  | String   | 2  | Language for displaying information on the payment page.   | ru,en,uk (ru — по умолчанию)|
-| params.user_email  | String   | -  | User e-mail    | `test@yandex.ru` |
-| params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  |
+| expiration| String  | -  | Maximum time for order payment   | 2014-07-21 12:44  | Yes |
+| amount  | Integer   | 10,2  | Price to be paid Format: a positive number with "." as the separator, no more than two digits after the dot | 123.45  | Yes|
+| currency  | String   | 3  | Currency in which the product price is indicated. (3-digit alphabetic ISO 4217 currency code) |UAH, RUR, EUR, USD  | Yes |
+| reference  | String   | 255  | Unique order number in the store system for further order identification   | 7EZUWB | Yes |
+| group_reference| String   | 255 | Site name, group identifier   | `Group.site.com` | No |
+| description | String  | 255  | Order description   | Оплата авиа билетов | Yes |
+| success_url  | String   | 255  | URL that the user will be redirected to if the payment is successful  | `http://test.net/success`  | Yes |
+| failure_url | String   | 255  | URL to which the user will be redirected in case of unsuccessful payment  | `http://test.net/failure` | Yes |
+| lang  | String   | 2  | Language for displaying information on the payment page.   | ru,en,uk (ru — по умолчанию)| Yes |
+| params.user_email  | String   | -  | User e-mail    | `test@yandex.ru` | Yes |
+| params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  | Yes |
 ***
 
 ***Example of source JSON data for generating the data parameter:***
