@@ -117,6 +117,8 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
 | lang  | String   | 2  | Language for displaying information on the payment page.   | ru,en,uk (ru — по умолчанию)| Yes|
 | params.user_email  | String   | -  | User e-mail    | `test@yandex.ru` | Yes|
 | params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  | Yes|
+| params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  | Yes|
+| params.ip | String   | -  | Customers ip adress| `192.168.0.1` | Yes(Mandatory only for /pay/direct)|
 ***
 
 ***Example of source JSON data for generating the data parameter:***
@@ -151,8 +153,6 @@ sign:
 | Parameter name  | Type  | Maximum length  | Description | Example  |
 | ------------- | -------------  | :-------------: | -------------  | ------------  |
 | pay_token  | String   | 255  | Token for generating recurring payments. The parameter is optional and depends on the settings of the payment gateway. Once received can be used with all merchant shops.   |    |
-| params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  |
-| params.ip | String   | -  | Customers ip adress| `192.168.0.1` |
 | params.user_phone  | String   | -  | User phone number    | `79034211332` |
 | params.verification_flag  | Integer   | 1  | Payment card verification sign. (Depends on the acquirer) 1 - After successful card verification, funds are automatically unblocked. |0 or 1. (default 0) |
 | params.random_amount_flag  | Integer   | 1  | NOT OPERATIONAL. Sign of blocking a random amount for card verification. 1 - A random amount is blocked in the range from 0 to the value specified by the amount parameter   |  |
