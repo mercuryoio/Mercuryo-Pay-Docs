@@ -119,19 +119,7 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
 | params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  | Yes|
 | params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  | Yes|
 | params.ip | String   | -  | Customers ip adress| `192.168.0.1` | Yes(Mandatory only for /pay/direct)|
-| params.af_platform | String   | -  | The platform from which the order was sent| Must be one of these values: `desktop_web`: Order was placed on the website, using a desktop device
-
-`mobile_web`: Order was placed on the mobile website, using a mobile device
-
-`mobile_app`: Order was placed on the mobile app, using a mobile device
-
-`mobile_app_android`: Order was placed on the mobile app, using an android mobile device
-
-`mobile_app_ios`: Order was placed on the mobile app, using an iOS mobile device
-
-`web`: Order was placed on the website, with no available info about the type of device used
-
-`unknown`: Order's origin is unknown`192.168.0.1` | Yes|
+| params.af_platform | String   | -  | The platform from which the order was sent| Must be one of these values: `desktop_web`: Order was placed on the website, using a desktop device `mobile_web`: Order was placed on the mobile website, using a mobile device `mobile_app`: Order was placed on the mobile app, using a mobile device `mobile_app_android`: Order was placed on the mobile app, using an android mobile device `mobile_app_ios`: Order was placed on the mobile app, using an iOS mobile device `web`: Order was placed on the website, with no available info about the type of device used `unknown`: Order's origin is unknown`192.168.0.1`| Yes|
 ***
 
 ***Example of source JSON data for generating the data parameter:***
@@ -813,7 +801,7 @@ For subsequent transactions you should additionally add *pay_token* and *params.
 This feature allows integration with our Antifraud solution in case of using merchants payment form
 
 1. Copy this js. beacon
-
+***
 <script type="text/javascript">
 //<![CDATA[ 
 (function() {
@@ -836,7 +824,7 @@ This feature allows integration with our Antifraud solution in case of using mer
 })();
 //]]>
 </script>
-
+***
 2. For each transaction merchant sould fill in 2 parameters in js. beacon above:
 `store_domain` - merchants domain
 `session_id` - unique transatcion_id from merchants side
