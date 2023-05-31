@@ -100,7 +100,7 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
 
 
 
-  ### 3. Basic parameters
+  ### 3. Basic parameters (https://pay.mercuryo.io/pay/)
 
 
 | Parameter name  | Type  | Maximum length  | Description | Example  | Mandatory |
@@ -119,22 +119,41 @@ Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
 | params.user_id  | String   | -  | Name, user ID in the merchant's system | test_user  | Yes|
 | params.flag_get_url| Integer  | 1 | 0 — Forming the payment page. 1 — Flag that returns the URL for redirecting the user, without generating a payment page. (Pre-creation of a session for order payment)   | 0 или 1.  (по умолчаню 0)  | Yes|
 | params.ip | String   | -  | Customers ip adress| `192.168.0.1` | Yes(Mandatory only for /pay/direct)|
+| params.af_platform | String   | -  | The platform from which the order was sent| Must be one of these values: `desktop_web`: Order was placed on the website, using a desktop device
+
+`mobile_web`: Order was placed on the mobile website, using a mobile device
+
+`mobile_app`: Order was placed on the mobile app, using a mobile device
+
+`mobile_app_android`: Order was placed on the mobile app, using an android mobile device
+
+`mobile_app_ios`: Order was placed on the mobile app, using an iOS mobile device
+
+`web`: Order was placed on the website, with no available info about the type of device used
+
+`unknown`: Order's origin is unknown`192.168.0.1` | Yes|
 ***
 
 ***Example of source JSON data for generating the data parameter:***
 
-	{
-	    "api_key":"c84f1ac0-e4f0-0131-5298-70921c57c2a2",
-	    "expiration":"2014-01-01 00:00",
-	    "amount":327.78,
-	    "currency":"RUR",
-	    "description":"proba",
-	    "reference":"123456789",
-	    "success_url":"http:\/\/test.ru\/success",
-	    "failure_url":"http:\/\/test.ru\/failure",
-	    "lang":"ru"
+	 {
+    "api_key":"You're api_key",
+    "expiration":"2023-09-11 00:00",
+    "amount":333,
+    "currency":"EUR",
+    "description":"You're description",
+    "reference":"123aA",
+    "success_url":"http:\/\/test.ru\/success",
+    "failure_url":"http:\/\/test.ru\/failure",
+    "lang":"ru",
+    "params":{
+	"flag_get_url":1,
+    "pay_token_flag":1,
+	"user_id":"test_user",
+	"user_email":"test@gmail.com",
+	"af_platform": "The platform from which the order was sent."
 	}
-	
+	}
 
 As a result, the base64-encoded JSON document and signature (signature password "123") get the variables "data" and "sign":
 
@@ -787,6 +806,88 @@ For subsequent transactions a simple payment form will be showed that contains m
 For the first payment, the merchant can pass a special parameter (params.pay_token_flag) in request to the end-point https://pay.mercuryo.io/pay/, which means that this payment is the first one. In response the pay token will be sent back.
 
 For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](Pay-API-EN.md#31-additional-parameters-optional-parameters)
+
+
+### 14. Antifraud integration (in case of using /pay/direct)
+
+This feature allows integration with our Antifraud solution in case of using merchants payment form
+
+1. Copy this js. beacon
+
+<script type="text/javascript">
+//<![CDATA[ 
+(function() {
+  function riskifiedBeaconLoad() {
+    var store_domain = '<YOUR DOMAIN>';
+    var session_id = 'SESSION ID GOES HERE - as passed to params.af_cart_token';
+    var url = ('https:' == document.location.protocol ? 'https://' : 'http://')
+      + "beacon.riskified.com?shop=" + store_domain + "&sid=" + session_id;
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = url;
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+  }
+  if (window.attachEvent)
+    window.attachEvent('onload', riskifiedBeaconLoad)
+  else
+    window.addEventListener('load', riskifiedBeaconLoad, false);
+})();
+//]]>
+</script>
+
+2. For each transaction merchant sould fill in 2 parameters in js. beacon above:
+`store_domain` - merchants domain
+`session_id` - unique transatcion_id from merchants side
+
+3. Add modified js. beacon in merchants payform page (HTML)
+
+4. Send these aditional parameters in the request body for /pay/direct
+| Parameter name  | Type  | Maximum length  | Description | Example  |
+| ------------- | -------------  | :-------------: | -------------  | ------------  |
+| params.af_cart_token | String   | 100  | A unique identifier created when a user visits your store. The session ID should be created at the beginning of the user's visit to your store, and not just when creating a shopping cart. The ID of the session for which the order was created must match the value of the session ID that is passed to beacon JavaScript | c84f1ac0-e4f0-0131-5298-70921c57c2a2     |
+| params.af_platform | String   | -  | The platform from which the order was sent| Must be one of these values: `desktop_web`: Order was placed on the website, using a desktop device
+
+`mobile_web`: Order was placed on the mobile website, using a mobile device
+
+`mobile_app`: Order was placed on the mobile app, using a mobile device
+
+`mobile_app_android`: Order was placed on the mobile app, using an android mobile device
+
+`mobile_app_ios`: Order was placed on the mobile app, using an iOS mobile device
+
+`web`: Order was placed on the website, with no available info about the type of device used
+
+`unknown`: Order's origin is unknown`192.168.0.1` |
+
+***Example of source JSON data for generating the data parameter:***
+
+{
+    "api_key":"You're api_key",
+    "expiration":"2023-09-11 00:00",
+    "amount":333,
+    "currency":"EUR",
+    "description":"You're description",
+    "reference":"123aA",
+    "success_url":"http:\/\/test.ru\/success",
+    "failure_url":"http:\/\/test.ru\/failure",
+    "lang":"ru",
+    "card_data":{
+	"pan":"4111111111111111",
+	"cvv":123,
+	"exp_month":12,
+	"exp_year":25,
+	"cardholder":"JOHN WICK"
+    },
+    "params":{
+    "flag_get_url": "1",
+    "verification_flag": "0",
+    "af_cart_token": "You're af_cart_token",
+    "af_platform": "The platform from which the order was sent.",
+    "user_email":"test@yandex.ru"
+    }
+}
 
 ### FAQ
 
