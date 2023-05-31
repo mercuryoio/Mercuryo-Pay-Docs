@@ -801,7 +801,7 @@ For subsequent transactions you should additionally add *pay_token* and *params.
 This feature allows integration with our Antifraud solution in case of using merchants payment form
 
 1. Copy this js. beacon
-
+{
 	<script type="text/javascript">
 	//<![CDATA[ 
 	(function() {
@@ -824,7 +824,7 @@ This feature allows integration with our Antifraud solution in case of using mer
 	})();
 	//]]>
 	</script>
-
+}
 2. For each transaction merchant sould fill in 2 parameters in js. beacon above:
 `store_domain` - merchants domain
 `session_id` - unique transatcion_id from merchants side
