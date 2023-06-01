@@ -832,6 +832,7 @@ This feature allows integration with our Antifraud solution in case of using mer
 3. Add modified js. beacon in merchants payform page (HTML)
 
 4. Send these aditional parameters in the request body for /pay/direct
+
 | Parameter name  | Type  | Maximum length  | Description | Example  |
 | ------------- | -------------  | :-------------: | -------------  | ------------  |
 | params.af_cart_token | String   | 100  | A unique identifier created when a user visits your store. The session ID should be created at the beginning of the user's visit to your store, and not just when creating a shopping cart. The ID of the session for which the order was created must match the value of the session ID that is passed to beacon JavaScript | c84f1ac0-e4f0-0131-5298-70921c57c2a2  |
