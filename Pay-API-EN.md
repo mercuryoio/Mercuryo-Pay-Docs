@@ -12,7 +12,7 @@
 
 1.  [Getting started with the system](/Pay-API-EN.md#1-getting-started-with-the-system)
 2. [Request parameters](/Pay-API-EN.md#2-request-parameters)
-3. [Basic parameters](/Pay-API-EN.md#3-basic-parameters)
+3. [Basic parameters](/Pay-API-EN.md#3-basic-parameters-httpspaymercuryoiopay)
 	
 	3.1. [Additional parameters (optional parameters)](/Pay-API-EN.md#31-additional-parameters-optional-parameters)
 	
@@ -29,6 +29,7 @@
 11. [Recurring payments (regular, recurring)](/Pay-API-EN.md#11-recurring-payments-regular-recurring)
 12. [Test cards](/Pay-API-EN.md#12-test-cards)
 13. [Customer initiated transactions](/Pay-API-EN.md#13-pay-token-for-customer-initiated-transactions)
+14. [Antifraud integration (in case of using /pay/direct)](/Pay-API-EN.md#14-antifraud-integration-in-case-of-using-paydirect)
 
 [FAQ](/Pay-API-EN.md#faq)
 
@@ -802,7 +803,7 @@ This feature allows integration with our Antifraud solution in case of using mer
 
 1. Copy this js. beacon
 
-```js
+```
 <script type="text/javascript">
 //<![CDATA[
 (function() {
