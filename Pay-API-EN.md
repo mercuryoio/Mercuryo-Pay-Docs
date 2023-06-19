@@ -36,11 +36,10 @@
 
 ### 1. Getting started with the system
        
-For each User who wants to make a payment on the Partner's website (or mobile app), an HTTP POST request for the URL must be initiated https://pay.mercuryo.io/pay/.
 > Sandbox (testing environment) URL use : https://pay.mrcr.io/pay
 >> Sandbox environment is provided by pay.mercuryo manager
 
-> Production URL use : https://pay.mercuryo.io/pay/
+> Production URL use : Once integration is ready kindly ask your integration manager for the production url
 
 The user will be redirected to the payment page https://pay.mercuryo.io/pay/, where the store's payment systems will be available for selection
 
