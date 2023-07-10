@@ -66,7 +66,7 @@ To see your api_key and secret_key, you must first add a test store (site) and c
 
 
 ### 2. Request parameters
-Request for a URL https://pay.mercuryo.io/pay/ (POST) two parameters are passed:
+Request for a URL https://pay.mrcr.io/pay/ (POST) two parameters are passed:
 - data - MIME base64 encoded string of the JSON document;
 - sign - signature, which is formed on the basis of the data string using the hash_hmac function to confirm the validity of the data.
 
