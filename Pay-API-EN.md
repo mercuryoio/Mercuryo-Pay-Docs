@@ -20,16 +20,17 @@
 4. [Passing a feedback message between the payment gateway and the Partner's website](/Pay-API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
 	
 	4.1. [Description of the parameters of the feedback document](/Pay-API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
-5. [Request information on transactions (detailed information on selected orders or transactions)](/Pay-API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
-6. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/Pay-API-EN.md#6-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
-7. [Requesting a report on transactions for a period of time](/Pay-API-EN.md#7-requesting-a-report-on-transactions-for-a-period-of-time)
-8. [Refund request](/Pay-API-EN.md#8-refund-request)
-9. [Request for discarding/unholding funds](/Pay-API-EN.md#9-request-for-discardingunholding-funds)
-10. [Request for withdrawal of held funds(funds put on hold)](/Pay-API-EN.md#10-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
-11. [Recurring payments (regular, recurring)](/Pay-API-EN.md#11-recurring-payments-regular-recurring)
-12. [Test cards](/Pay-API-EN.md#12-test-cards)
-13. [Customer initiated transactions](/Pay-API-EN.md#13-pay-token-for-customer-initiated-transactions)
-14. [Antifraud integration (in case of using /pay/direct)](/Pay-API-EN.md#14-antifraud-integration-in-case-of-using-paydirect)
+5. [Request transaction status (status on selected orders or transactions)](/Pay-API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
+6. [Request information on transactions (detailed information on selected orders or transactions)](/Pay-API-EN.md#6-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
+7. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/Pay-API-EN.md#7-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
+8. [Requesting a report on transactions for a period of time](/Pay-API-EN.md#8-requesting-a-report-on-transactions-for-a-period-of-time)
+9. [Refund request](/Pay-API-EN.md#9-refund-request)
+10. [Request for discarding/unholding funds](/Pay-API-EN.md#10-request-for-discardingunholding-funds)
+11. [Request for withdrawal of held funds(funds put on hold)](/Pay-API-EN.md#11-request-for-withdrawal-of-held-fundsfunds-put-on-hold)
+12. [Recurring payments (regular, recurring)](/Pay-API-EN.md#12-recurring-payments-regular-recurring)
+13. [Test cards](/Pay-API-EN.md#13-test-cards)
+14. [Customer initiated transactions](/Pay-API-EN.md#14-pay-token-for-customer-initiated-transactions)
+15. [Antifraud integration (in case of using /pay/direct)](/Pay-API-EN.md#15-antifraud-integration-in-case-of-using-paydirect)
 
 [FAQ](/Pay-API-EN.md#faq)
 
@@ -346,7 +347,54 @@ Accordingly, one order can have several transactions with the error status and, 
 
 
 
-### 5. Request information on transactions (detailed information on selected orders or transactions)
+### 5. Request transaction status (status on selected orders or transactions)
+
+Request for a URL https://pay.mercuryo.io/pay/order_status (POST) two parameters are passed:
+- data - MIME base64 encoded string of the JSON document;
+
+- sign - signature, which is formed on the basis of the data string using the hash_hmac function to confirm the validity of the data.
+
+
+| Parameter name  | Description  | Example  |
+| ------------- | -------------  | ------------- | 
+| api_key  | Store key (identifier)   | c84f1ac0-e4f0-0131-5298-70921c57c2a2   |
+| transaction_id  | Transaction identifier in the https://pay.mercuryo.io/ system, by which information should be requested | 2231  |
+
+***
+
+***Result of processing is a JSON structure:***
+
+`{
+    "data": "eyJpdGVtcyI6W3sic3RhdHVzIjozLCJzdGF0dXNfbmFtZSI6InN1Y2Nlc3MiLCJ0cmFuc2FjdGlvbl9pZCI6MTA1MTM3ODcsImRlc2NyaXB0aW9uIjoi0KLQtdGB0YIg0L/Qu9Cw0YLQtdC20LAiLCJyZWZlcmVuY2UiOiJramJraHZjdHV1ZiIsImFtb3VudCI6IjEwMC4wIiwiY3VycmVuY3kiOiJFVVIifV0sInN1Y2Nlc3MiOnRydWUsInRpbWVfcHJvYyI6IjAuMTIgc2VjLiIsInJlcXVlc3RfaWQiOiI0NTk4Mjg0NDQ3In0=",
+    "sign": "794316aa8a552ea8897e9fab4f43668c",
+    "success": true,
+    "time_proc": "0.12 sec.",
+    "request_id": "4598284447"
+}`
+
+***
+
+As a result of decoding the data parameter, we get an array of elements with a structure similar to the feedback message between the payment gateway and the Partner's website [paragraph 4](/Pay-API-EN.md#2-request-parameters):
+
+`{
+    "items":
+    [
+        {
+            "status": 3,
+            "status_name": "success",
+            "transaction_id": 10513787,
+            "description": "Тест платежа",
+            "reference": "kjbkhvctuuf",
+            "amount": "100.0",
+            "currency": "EUR"
+        }
+    ],
+    "success": true,
+    "time_proc": "0.12 sec.",
+    "request_id": "4598284447"
+}`
+
+### 6. Request information on transactions (detailed information on selected orders or transactions)
 
 Request for a URL https://pay.mercuryo.io/pay/get_orders_data (POST) two parameters are passed:
 - data - MIME base64 encoded string of the JSON document;
@@ -408,7 +456,7 @@ As a result of decoding the data parameter, we get an array of elements with a s
 
 
 
-### 6. Formation of cardholder data on the merchant side (PCI DSS certificate required)
+### 7. Formation of cardholder data on the merchant side (PCI DSS certificate required)
 
 Request for URL https://pay.mercuryo.io/pay/direct (POST) is passed two parameters:
 - data - the MIME base64 encoded string of the JSON document;
@@ -561,7 +609,7 @@ sign:
 
 
 
-### 7. Requesting a report on transactions for a period of time
+### 8. Requesting a report on transactions for a period of time
 
 Request for URL https://pay.mercuryo.io/pay/get_report (POST) is passed two parameters:
 - data - the MIME base64 encoded string of the JSON document;
@@ -600,7 +648,7 @@ Request for URL https://pay.mercuryo.io/pay/get_report (POST) is passed two para
 
 
 
-### 8. Refund request
+### 9. Refund request
 
 Request for URL https://pay.mercuryo.io/pay/refund (POST) is passed two parameters:
 - data - the MIME base64 encoded string of the JSON document;
@@ -655,7 +703,7 @@ Request for URL https://pay.mercuryo.io/pay/refund (POST) is passed two paramete
 
 
 
-### 9. Request for discarding/unholding funds
+### 10. Request for discarding/unholding funds
 
 Request for URL https://pay.mercuryo.io/pay/void (POST) is passed two parameters:
 - data - the MIME base64 encoded string of the JSON document;
@@ -706,7 +754,7 @@ Request for URL https://pay.mercuryo.io/pay/void (POST) is passed two parameters
 
 
 
-### 10. Request for withdrawal of held funds(funds put on hold)
+### 11. Request for withdrawal of held funds(funds put on hold)
 
 Request for a URL https://pay.mercuryo.io/pay/complete (POST) two parameters are passed:
 - data - MIME base64 encoded string of the JSON document;
@@ -759,7 +807,7 @@ This operation is possible for transactions in **status 1 (authorize(lock amount
 
 
 
-### 11. Recurring payments (regular, recurring)
+### 12. Recurring payments (regular, recurring)
 
 **Recurring payments** are payments that do not require re-entering the card details. The first payment is made with the input of all card details, subsequent payments are made without entering the card details and without the participation of the card holder. By default, this functionality is disabled for the seller.
 
@@ -771,7 +819,7 @@ The request parameters are similar to the description in [paragraph 3](/Pay-API-
 
 Testing of recurring payments can be carried out with the card without 3Ds
 
-### 12. Test cards
+### 13. Test cards
 
 Card number: 4111111111111111 **OR** 5555555555555599
 
@@ -785,7 +833,7 @@ CVV for successful payment with redirect to 3DS (password is not entered): 333
 
 CVV for failure payment: 222
 
-### 13. Pay token for Customer Initiated Transactions
+### 14. Pay token for Customer Initiated Transactions
 
 This feature allows to generate pay token after the first transaction in order the customer doesn't need to fill in all card details for subsequent transactions with the same card (except for CVV/CVC code). 
 
@@ -796,7 +844,7 @@ For the first payment, the merchant can pass a special parameter (params.pay_tok
 For subsequent transactions you should additionally add *pay_token* and *params.flag_get_url* to the request. Refer to [paragraph 3.1](Pay-API-EN.md#31-additional-parameters-optional-parameters)
 
 
-### 14. Antifraud integration (in case of using /pay/direct)
+### 15. Antifraud integration (in case of using /pay/direct)
 
 This feature allows integration with our Antifraud solution in case of using merchants payment form
 
