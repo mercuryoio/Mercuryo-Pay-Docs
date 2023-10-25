@@ -20,7 +20,7 @@
 4. [Passing a feedback message between the payment gateway and the Partner's website](/Pay-API-EN.md#4-passing-a-feedback-message-between-the-payment-gateway-and-the-partners-website)
 	
 	4.1. [Description of the parameters of the feedback document](/Pay-API-EN.md#41-description-of-the-parameters-of-the-feedback-document)
-5. [Request transaction status (status on selected orders or transactions)](/Pay-API-EN.md#5-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
+5. [Request transaction status (status on selected orders or transactions)](/Pay-API-EN.md#5-request-transaction-status-status-on-selected-orders-or-transactions)
 6. [Request information on transactions (detailed information on selected orders or transactions)](/Pay-API-EN.md#6-request-information-on-transactions-detailed-information-on-selected-orders-or-transactions)
 7. [Formation of cardholder data on the merchant side (PCI DSS certificate required)](/Pay-API-EN.md#7-formation-of-cardholder-data-on-the-merchant-side-pci-dss-certificate-required)
 8. [Requesting a report on transactions for a period of time](/Pay-API-EN.md#8-requesting-a-report-on-transactions-for-a-period-of-time)
